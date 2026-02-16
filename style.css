@@ -1,144 +1,184 @@
 /* --- BASE DU DOCUMENT --- */
-body,
-html {
-  margin: 0;                                    /* Supprime les marges par défaut du navigateur */
-  padding: 0;                                   /* Supprime les espacements internes par défaut */
-  height: 100%;                                 /* Force le document à prendre toute la hauteur */
-  font-family: 'Arial', sans-serif;             /* Définit la police d'écriture */
-  background-color: #f0f0f0;                    /* Couleur de fond gris clair */
-  display: flex;                                /* Active le mode Flexbox */
-  flex-direction: column;                       /* Aligne les enfants (nav, main, footer) verticalement */
-  -webkit-user-select: none;                    /* Empêche la sélection de texte (Safari) */
-  user-select: none;                            /* Empêche la sélection de texte pour l'utilisateur */
+body, html {
+  margin: 0;                                    /* Supprime les espacements automatiques sur les bords de l'écran */
+  padding: 0;                                   /* Supprime les espacements internes automatiques */
+  height: 100%;                                 /* Oblige le document à descendre jusqu'en bas de la fenêtre */
+  font-family: 'Arial', sans-serif;             /* Choisit la police d'écriture pour tout le site */
+  background-color: #f0f0f0;                    /* Applique un gris clair neutre pour ne pas fatiguer les yeux */
+  display: flex;                                /* Active Flexbox pour rendre la mise en page souple */
+  flex-direction: column;                       /* Place les gros blocs (nav, main, footer) les uns en dessous des autres */
+  user-select: none;                            /* Empêche l'utilisateur de surligner le texte en bleu par accident */
 }
 
-/* --- STRUCTURE PRINCIPALE (#app) --- */
+/* --- STRUCTURE PRINCIPALE --- */
 #app {
-  display: flex;                                /* Active Flexbox pour le conteneur racine */
-  flex-direction: column;                       /* Aligne les éléments en colonne */
-  justify-content: space-between;               /* Espace les éléments pour que le footer reste en bas */
-  height: 100%;                                 /* Prend toute la hauteur disponible */
+  display: flex;                                /* Active Flexbox pour l'application globale */
+  flex-direction: column;                       /* Idem, empilement de haut en bas */
+  height: 100%;                                 /* Pousse le conteneur jusqu'en bas */
 }
 
-/* --- NAVIGATION --- */
+/* --- BARRE DE NAVIGATION --- */
 nav {
-  display: flex;                                /* Aligne les liens horizontalement */
-  justify-content: center;                      /* Centre les liens horizontalement */
-  gap: 20px;                                    /* Ajoute 20px d'espace entre chaque lien */
-  background-color: #000000;                    /* Fond noir pour la barre de navigation */
-  padding: 15px 0;                              /* Espacement vertical de 15px */
-  position: relative;                           /* Nécessaire pour positionner le sous-menu par rapport à la nav */
+  display: flex;                                /* Active Flexbox pour aligner les boutons horizontalement */
+  justify-content: center;                      /* Pousse tous les boutons bien au centre de la barre */
+  gap: 20px;                                    /* Sépare chaque bouton par un espace vide de 20 pixels */
+  background-color: #000000;                    /* Fond totalement noir */
+  padding: 15px 0;                              /* Élargit la barre noire en haut et en bas */
+  position: relative;                           /* Indispensable pour que le menu déroulant sache où s'accrocher */
 }
 
 nav a {
-  background: none;                             /* Supprime le fond par défaut des liens */
-  border: none;                                 /* Supprime les bordures */
-  color: white;                                 /* Texte en blanc */
-  font-size: 16px;                              /* Taille de la police */
-  text-decoration: none;                        /* Supprime le soulignement des liens */
-  cursor: pointer;                              /* Affiche la main au survol */
-  transition: color 0.3s;                       /* Animation fluide de 0.3s pour le changement de couleur */
+  color: white;                                 /* Texte des boutons en blanc */
+  font-size: 16px;                              /* Taille de lecture standard */
+  text-decoration: none;                        /* Supprime le trait moche sous les liens HTML classiques */
+  cursor: pointer;                              /* Transforme la souris en main cliquable */
+  transition: color 0.3s;                       /* Anime le changement de couleur sur une durée d'un tiers de seconde */
 }
 
 nav a:hover {
-  color: #ffcc00;                               /* Change la couleur en jaune au survol */
+  color: #ffcc00;                               /* Change le texte en jaune doré quand on passe la souris */
 }
 
-/* --- LE MENU DÉROULANT (SUB-MENU) --- */
+/* --- MENU DÉROULANT (CACHÉ) --- */
 .sub-menu {
-  display: none;                                /* CACHÉ PAR DÉFAUT : Ne prend pas de place */
-  position: absolute;                           /* Sort du flux pour se placer au-dessus du reste */
-  top: 100%;                                    /* Se place exactement sous la barre de nav */
-  left: 55%;                                    /* Se positionne horizontalement (ajustable) */
-  background-color: #1a1a1a;                    /* Fond noir légèrement plus clair que la nav */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);    /* Ombre portée pour donner du relief */
-  padding: 10px 0;                              /* Espacement interne haut/bas */
-  z-index: 1000;                                /* S'assure que le menu passe devant le contenu */
-  min-width: 150px;                             /* Largeur minimale du menu */
-  border-radius: 0 0 5px 5px;                   /* Arrondit uniquement les coins du bas */
+  display: none;                                /* RÈGLE CAPITALE : Fait disparaître la boîte de l'écran par défaut */
+  position: absolute;                           /* Détache la boîte du reste du site pour qu'elle flotte au-dessus */
+  top: 100%;                                    /* Demande à la boîte de flotter précisément en dessous de la barre noire */
+  background-color: #1a1a1a;                    /* Fond très gris, presque noir */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);    /* Ajoute une ombre floue pour simuler la 3D et le détachement */
+  padding: 10px 0;                              /* Espacement interne haut et bas */
+  z-index: 1000;                                /* Assure que le menu passera devant n'importe quel autre élément du site */
+  min-width: 150px;                             /* Empêche la boîte d'être trop fine */
+  border-radius: 0 0 5px 5px;                   /* Arrondit uniquement les deux angles inférieurs du menu */
 }
 
-/* LA CLASSE MAGIQUE : Activée par le JS */
+/* DÉCLENCHEUR D'AFFICHAGE DU MENU */
 .sub-menu.active {
-  display: block;                               /* REND LE MENU VISIBLE */
+  display: block;                               /* RÈGLE CAPITALE : Quand JS ajoute ".active", on annule le "none" et on l'affiche */
 }
 
 .sub-menu a {
-  display: block;                               /* Force chaque lien à prendre une ligne entière */
+  display: block;                               /* Oblige les liens à prendre toute la ligne (pour s'empiler) */
   color: #fff;                                  /* Texte blanc */
-  padding: 10px 20px;                           /* Zone de clic plus large */
+  padding: 10px 20px;                           /* Élargit la zone cliquable pour que l'utilisateur vise facilement */
   text-decoration: none;                        /* Pas de soulignement */
-  font-size: 14px;                              /* Police légèrement plus petite que la nav */
 }
 
 .sub-menu a:hover {
-  background-color: #333333;                    /* Fond gris foncé au survol d'une option */
-  color: #ffcc00;                               /* Texte jaune au survol d'une option */
+  background-color: #333333;                    /* Colore le fond de la case survolée en gris */
+  color: #ffcc00;                               /* Met le texte de la case survolée en jaune */
 }
 
-/* --- CONTENU PRINCIPAL --- */
+/* --- ZONE CENTRALE (CHANGEMENT DE PAGE) --- */
 .main-content {
-  flex: 1;                                      /* Prend tout l'espace restant entre nav et footer */
+  flex: 1;                                      /* Ordonne à cette zone de prendre TOUTE la place libre au centre de l'écran */
   display: flex;                                /* Active Flexbox */
-  justify-content: center;                      /* Centre le contenu horizontalement */
-  align-items: center;                          /* Centre le contenu verticalement */
-  padding: 20px;                                /* Marge interne de sécurité */
+  justify-content: center;                      /* Centre horizontalement le contenu de la page */
+  padding: 20px;                                /* Protège le contenu pour qu'il ne touche pas les bords de l'écran */
+  overflow-y: auto;                             /* TRÈS UTILE : Permet de faire défiler (scroller) si les articles débordent */
 }
 
-/* --- SECTIONS --- */
+/* PAGES (SECTIONS) */
 .section {
-  display: none;                                /* Toutes les sections sont cachées par défaut */
-  text-align: center;                           /* Centre le texte à l'intérieur */
-  max-width: 600px;                             /* Limite la largeur pour la lisibilité */
-  width: 100%;                                  /* Prend toute la largeur jusqu'au max */
+  display: none;                                /* Par défaut, toutes les pages du site sont cachées */
+  width: 100%;                                  /* Force la page à prendre toute la largeur autorisée */
+  max-width: 600px;                             /* Mais bloque la largeur à 600px pour éviter que le texte soit trop étiré */
+  text-align: center;                           /* Centre les textes par défaut */
 }
 
 .section.active {
-  display: block;                               /* Affiche uniquement la section avec la classe .active */
+  display: block;                               /* Seule la page ayant reçu la classe ".active" en JS est dessinée à l'écran */
 }
 
-/* --- COMPTEUR --- */
+/* --- JEU DU COMPTEUR --- */
 .counter button {
-  padding: 10px 20px;                           /* Taille du bouton compteur */
-  font-size: 20px;                              /* Taille du chiffre */
-  cursor: pointer;                              /* Main au survol */
+  padding: 10px 20px;                           /* Rend le bouton massif */
+  font-size: 20px;                              /* Grossit le numéro */
+  cursor: pointer;                              /* Apparence cliquable */
   background-color: #000;                       /* Fond noir */
-  color: #ffcc00;                               /* Chiffre jaune */
-  border: 2px solid #ffcc00;                    /* Bordure jaune */
-  border-radius: 5px;                           /* Coins arrondis */
+  color: #ffcc00;                               /* Texte jaune */
+  border: 2px solid #ffcc00;                    /* Ajoute un contour jaune solide de 2px d'épaisseur */
+  border-radius: 5px;                           /* Arrondit légèrement le bouton */
 }
 
-/* --- CONTENEUR DE DONNÉES (FETCH) --- */
-.data-container h2 {
-  color: #333;                                  /* Titre des données en gris foncé */
-  margin-top: 20px;                             /* Espace au dessus */
+/* --- LE NOUVEAU FORMULAIRE DE CRÉATION --- */
+.post-form {
+  background: white;                            /* Le formulaire ressort avec un fond blanc sur le fond gris du site */
+  padding: 20px;                                /* Donne de l'air aux éléments à l'intérieur */
+  border-radius: 8px;                           /* Arrondit la boîte joliment */
+  margin-bottom: 20px;                          /* Pousse la liste des articles vers le bas pour ne pas coller */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);        /* Légère ombre pour donner un aspect de carte physique */
+  text-align: left;                             /* Ramène les textes du formulaire à gauche (plus naturel pour lire) */
 }
 
-.data-container p {
-  color: #666;                                  /* Texte des données en gris moyen */
-  line-height: 1.5;                             /* Espacement entre les lignes pour lire mieux */
+.post-form h3 {
+  margin-top: 0;                                /* Enlève l'espace naturel au-dessus des gros titres */
+  color: #333;                                  /* Gris très foncé pour une lecture douce */
 }
 
+.post-form input, .post-form textarea {
+  width: 95%;                                   /* Prend 95% de la place disponible pour laisser une petite marge à droite */
+  margin-bottom: 10px;                          /* Sépare les zones de texte entre elles */
+  padding: 10px;                                /* Écarte le curseur clignotant des bordures de la boîte de texte */
+  border: 1px solid #ddd;                       /* Dessine une bordure fine et discrète */
+  border-radius: 4px;                           /* Arrondit les cases de saisie */
+  font-family: inherit;                         /* Demande à prendre la police 'Arial' du body plutôt que la police par défaut des inputs */
+}
+
+.post-form textarea {
+  resize: vertical;                             /* Option géniale : autorise l'utilisateur à tirer le coin pour agrandir la zone, mais que de haut en bas */
+  min-height: 80px;                             /* Empêche la zone de devenir trop petite */
+}
+
+.post-form button {
+  background: #000;                             /* Bouton "Publier" noir */
+  color: #ffcc00;                               /* Texte "Publier" jaune */
+  border: none;                                 /* Pas de contour moche */
+  padding: 10px 20px;                           /* Belle taille de bouton */
+  cursor: pointer;                              /* Main cliquable */
+  border-radius: 4px;                           /* Petit arrondi */
+  font-weight: bold;                            /* Texte plus épais pour marquer l'action */
+}
+
+.post-form button:hover {
+  background: #333;                             /* Le noir devient gris foncé quand on veut cliquer */
+}
+
+/* --- LA LISTE DES ARTICLES (POSTS) --- */
 .loading {
-  font-size: 18px;                              /* Taille du texte "Loading" */
-  color: #007BFF;                               /* Couleur bleue pour le chargement */
-  font-weight: bold;                            /* Texte en gras */
+  font-size: 18px;                              /* Taille du texte de chargement API */
+  color: #007BFF;                               /* Bleu internet classique */
+  font-weight: bold;                            /* En gras */
+  text-align: center;                           /* Au milieu de l'écran */
+  margin: 20px 0;                               /* Dégage l'espace en haut et en bas */
 }
 
-/* --- PIED DE PAGE (FOOTER) --- */
+.post-item {
+  background: white;                            /* Le post ressemble à une carte blanche */
+  padding: 15px;                                /* Espace interne */
+  border-radius: 8px;                           /* Carte arrondie */
+  margin-bottom: 15px;                          /* Sépare ce post du post suivant */
+  border-left: 5px solid #ffcc00;               /* Détail design : une barre verticale jaune épaisse sur le côté gauche */
+  text-align: left;                             /* Texte aligné classiquement à gauche */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);        /* Petite ombre portée douce */
+}
+
+.post-item h4 {
+  margin: 0 0 10px 0;                           /* Gère l'espace du titre de l'article */
+  color: #333;                                  /* Titre bien lisible */
+  text-transform: capitalize;                   /* Force la première lettre de chaque mot en majuscule, très utile pour les API en anglais */
+}
+
+.post-item p {
+  margin: 0;                                    /* Supprime la marge de base */
+  color: #666;                                  /* Texte principal en gris (moins agressif que le noir pur) */
+  line-height: 1.5;                             /* Écarte les lignes de texte : technique n°1 pour améliorer la lecture */
+}
+
+/* --- PIED DE PAGE --- */
 footer {
   background-color: #000000;                    /* Fond noir */
-  color: white;                                 /* Texte blanc */
-  text-align: center;                           /* Centre le texte */
-  padding: 20px 0;                              /* Espacement interne */
-}
-
-footer a {
-  color: #ffcc00;                               /* Liens du footer en jaune */
-  margin: 0 10px;                               /* Espace entre les liens */
-  text-decoration: none;                        /* Pas de soulignement */
-}
-
-footer a:hover {
-  text-decoration: underline;                  /* Souligne au survol dans le footer */
+  color: white;                                 /* Texte en blanc */
+  text-align: center;                           /* Parfaitement centré */
+  padding: 20px 0;                              /* Épaisseur de la barre de pied de page */
 }
