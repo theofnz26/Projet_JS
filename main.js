@@ -1,3 +1,6 @@
+// Structure du projet validée : index.html, main.js, style.css
+
+
 function createAndStyleElement(tag, className, content = '') {
     const element = document.createElement(tag);
     if (className) element.className = className;
