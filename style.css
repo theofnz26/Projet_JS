@@ -1,184 +1,261 @@
 /* --- BASE DU DOCUMENT --- */
 body, html {
-  margin: 0;                                    /* Supprime les espacements automatiques sur les bords de l'écran */
-  padding: 0;                                   /* Supprime les espacements internes automatiques */
-  height: 100%;                                 /* Oblige le document à descendre jusqu'en bas de la fenêtre */
-  font-family: 'Arial', sans-serif;             /* Choisit la police d'écriture pour tout le site */
-  background-color: #f0f0f0;                    /* Applique un gris clair neutre pour ne pas fatiguer les yeux */
-  display: flex;                                /* Active Flexbox pour rendre la mise en page souple */
-  flex-direction: column;                       /* Place les gros blocs (nav, main, footer) les uns en dessous des autres */
-  user-select: none;                            /* Empêche l'utilisateur de surligner le texte en bleu par accident */
+  margin: 0;                                    /* Supprime les espacements automatiques */
+  padding: 0;                                   /* Supprime les espacements internes */
+  height: 100%;                                 /* Oblige le document à prendre toute la hauteur */
+  font-family: 'Arial', sans-serif;             /* Choisit la police d'écriture */
+  background-color: #1a1a2e;                    /* Couleur de secours indigo foncé */
+  background-image: url('img/image_de_fond.png'); /* Ton image de fond personnalisée */
+  background-size: cover;                       /* L'image couvre tout l'écran */
+  background-position: center center;           /* L'image est centrée */
+  background-repeat: no-repeat;                 /* Pas de répétition */
+  background-attachment: fixed;                 /* L'image reste fixe quand on scrolle */
+  color: #ffffff;                               /* Texte global en blanc pour le contraste */
+  display: flex;                                /* Active Flexbox */
+  flex-direction: column;                       /* Place les blocs en colonne */
+  user-select: none;                            /* Empêche la sélection de texte */
 }
 
 /* --- STRUCTURE PRINCIPALE --- */
 #app {
   display: flex;                                /* Active Flexbox pour l'application globale */
-  flex-direction: column;                       /* Idem, empilement de haut en bas */
+  flex-direction: column;                       /* Empilement de haut en bas */
   height: 100%;                                 /* Pousse le conteneur jusqu'en bas */
 }
 
 /* --- BARRE DE NAVIGATION --- */
 nav {
   display: flex;                                /* Active Flexbox pour aligner les boutons horizontalement */
-  justify-content: center;                      /* Pousse tous les boutons bien au centre de la barre */
-  gap: 20px;                                    /* Sépare chaque bouton par un espace vide de 20 pixels */
-  background-color: #000000;                    /* Fond totalement noir */
+  justify-content: center;                      /* Pousse tous les boutons au centre */
+  gap: 20px;                                    /* Sépare chaque bouton de 20px */
+  background-color: #000000;                    /* Fond noir */
   padding: 15px 0;                              /* Élargit la barre noire en haut et en bas */
-  position: relative;                           /* Indispensable pour que le menu déroulant sache où s'accrocher */
+  position: relative;                           /* Indispensable pour le menu déroulant */
 }
 
 nav a {
   color: white;                                 /* Texte des boutons en blanc */
-  font-size: 16px;                              /* Taille de lecture standard */
-  text-decoration: none;                        /* Supprime le trait moche sous les liens HTML classiques */
-  cursor: pointer;                              /* Transforme la souris en main cliquable */
-  transition: color 0.3s;                       /* Anime le changement de couleur sur une durée d'un tiers de seconde */
+  font-size: 16px;                              /* Taille standard */
+  text-decoration: none;                        /* Supprime le soulignement */
+  cursor: pointer;                              /* Souris en main cliquable */
+  transition: color 0.3s;                       /* Anime le changement de couleur */
 }
 
 nav a:hover {
-  color: #ffcc00;                               /* Change le texte en jaune doré quand on passe la souris */
+  color: #ffcc00;                               /* Change le texte en jaune au survol */
 }
 
-/* --- MENU DÉROULANT (CACHÉ) --- */
+/* --- MENU DÉROULANT --- */
 .sub-menu {
-  display: none;                                /* RÈGLE CAPITALE : Fait disparaître la boîte de l'écran par défaut */
-  position: absolute;                           /* Détache la boîte du reste du site pour qu'elle flotte au-dessus */
-  top: 100%;                                    /* Demande à la boîte de flotter précisément en dessous de la barre noire */
-  background-color: #1a1a1a;                    /* Fond très gris, presque noir */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);    /* Ajoute une ombre floue pour simuler la 3D et le détachement */
+  display: none;                                /* Boîte cachée par défaut */
+  position: absolute;                           /* Flotte au-dessus du reste */
+  top: 100%;                                    /* Flotte en dessous de la barre noire */
+  background-color: #1a1a1a;                    /* Fond très gris foncé */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);    /* Ombre floue */
   padding: 10px 0;                              /* Espacement interne haut et bas */
-  z-index: 1000;                                /* Assure que le menu passera devant n'importe quel autre élément du site */
-  min-width: 150px;                             /* Empêche la boîte d'être trop fine */
-  border-radius: 0 0 5px 5px;                   /* Arrondit uniquement les deux angles inférieurs du menu */
+  z-index: 1000;                                /* Passe devant les autres éléments */
+  min-width: 150px;                             /* Largeur minimale */
+  border-radius: 0 0 5px 5px;                   /* Arrondis inférieurs */
 }
 
-/* DÉCLENCHEUR D'AFFICHAGE DU MENU */
 .sub-menu.active {
-  display: block;                               /* RÈGLE CAPITALE : Quand JS ajoute ".active", on annule le "none" et on l'affiche */
+  display: block;                               /* Affiche le menu quand la classe est là */
 }
 
 .sub-menu a {
-  display: block;                               /* Oblige les liens à prendre toute la ligne (pour s'empiler) */
+  display: block;                               /* Liens en blocs empilés */
   color: #fff;                                  /* Texte blanc */
-  padding: 10px 20px;                           /* Élargit la zone cliquable pour que l'utilisateur vise facilement */
+  padding: 10px 20px;                           /* Zone cliquable large */
   text-decoration: none;                        /* Pas de soulignement */
 }
 
 .sub-menu a:hover {
-  background-color: #333333;                    /* Colore le fond de la case survolée en gris */
-  color: #ffcc00;                               /* Met le texte de la case survolée en jaune */
+  background-color: #333333;                    /* Fond gris au survol */
+  color: #ffcc00;                               /* Texte jaune au survol */
 }
 
-/* --- ZONE CENTRALE (CHANGEMENT DE PAGE) --- */
+/* --- ZONE CENTRALE --- */
 .main-content {
-  flex: 1;                                      /* Ordonne à cette zone de prendre TOUTE la place libre au centre de l'écran */
+  flex: 1;                                      /* Prend toute la place libre au centre */
   display: flex;                                /* Active Flexbox */
-  justify-content: center;                      /* Centre horizontalement le contenu de la page */
-  padding: 20px;                                /* Protège le contenu pour qu'il ne touche pas les bords de l'écran */
-  overflow-y: auto;                             /* TRÈS UTILE : Permet de faire défiler (scroller) si les articles débordent */
+  justify-content: center;                      /* Centre horizontalement */
+  padding: 20px;                                /* Protège les bords */
+  overflow-y: auto;                             /* Active le défilement si nécessaire */
 }
 
-/* PAGES (SECTIONS) */
 .section {
-  display: none;                                /* Par défaut, toutes les pages du site sont cachées */
-  width: 100%;                                  /* Force la page à prendre toute la largeur autorisée */
-  max-width: 600px;                             /* Mais bloque la largeur à 600px pour éviter que le texte soit trop étiré */
-  text-align: center;                           /* Centre les textes par défaut */
+  display: none;                                /* Toutes les pages sont cachées par défaut */
+  width: 100%;                                  /* Prend toute la largeur autorisée */
+  max-width: 800px;                             /* Limite la largeur (élargi à 800px pour la galerie) */
+  text-align: center;                           /* Centre les textes */
 }
 
 .section.active {
-  display: block;                               /* Seule la page ayant reçu la classe ".active" en JS est dessinée à l'écran */
+  display: block;                               /* Affiche la page active */
 }
 
 /* --- JEU DU COMPTEUR --- */
 .counter button {
-  padding: 10px 20px;                           /* Rend le bouton massif */
-  font-size: 20px;                              /* Grossit le numéro */
+  padding: 10px 20px;                           /* Bouton massif */
+  font-size: 20px;                              /* Gros numéro */
   cursor: pointer;                              /* Apparence cliquable */
   background-color: #000;                       /* Fond noir */
   color: #ffcc00;                               /* Texte jaune */
-  border: 2px solid #ffcc00;                    /* Ajoute un contour jaune solide de 2px d'épaisseur */
-  border-radius: 5px;                           /* Arrondit légèrement le bouton */
+  border: 2px solid #ffcc00;                    /* Contour jaune */
+  border-radius: 5px;                           /* Coins arrondis */
 }
 
-/* --- LE NOUVEAU FORMULAIRE DE CRÉATION --- */
+/* --- LE FORMULAIRE DE CRÉATION (FEED) --- */
 .post-form {
-  background: white;                            /* Le formulaire ressort avec un fond blanc sur le fond gris du site */
-  padding: 20px;                                /* Donne de l'air aux éléments à l'intérieur */
-  border-radius: 8px;                           /* Arrondit la boîte joliment */
-  margin-bottom: 20px;                          /* Pousse la liste des articles vers le bas pour ne pas coller */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);        /* Légère ombre pour donner un aspect de carte physique */
-  text-align: left;                             /* Ramène les textes du formulaire à gauche (plus naturel pour lire) */
+  background: white;                            /* Fond blanc */
+  padding: 20px;                                /* Aération interne */
+  border-radius: 8px;                           /* Coins arrondis */
+  margin-bottom: 20px;                          /* Espace en dessous */
+  text-align: left;                             /* Texte à gauche */
 }
 
-.post-form h3 {
-  margin-top: 0;                                /* Enlève l'espace naturel au-dessus des gros titres */
-  color: #333;                                  /* Gris très foncé pour une lecture douce */
-}
-
+.post-form h3 { color: #333; margin-top: 0; }   /* Titre du formulaire sombre */
 .post-form input, .post-form textarea {
-  width: 95%;                                   /* Prend 95% de la place disponible pour laisser une petite marge à droite */
-  margin-bottom: 10px;                          /* Sépare les zones de texte entre elles */
-  padding: 10px;                                /* Écarte le curseur clignotant des bordures de la boîte de texte */
-  border: 1px solid #ddd;                       /* Dessine une bordure fine et discrète */
-  border-radius: 4px;                           /* Arrondit les cases de saisie */
-  font-family: inherit;                         /* Demande à prendre la police 'Arial' du body plutôt que la police par défaut des inputs */
+  width: 95%;                                   /* Prend presque toute la largeur */
+  margin-bottom: 10px;                          /* Espace entre les champs */
+  padding: 10px;                                /* Aération du texte saisi */
+  border: 1px solid #ddd;                       /* Bordure légère */
+  border-radius: 4px;                           /* Arrondis des champs */
 }
-
-.post-form textarea {
-  resize: vertical;                             /* Option géniale : autorise l'utilisateur à tirer le coin pour agrandir la zone, mais que de haut en bas */
-  min-height: 80px;                             /* Empêche la zone de devenir trop petite */
-}
+.post-form textarea { resize: vertical; min-height: 80px; } /* Zone de texte étirable verticalement */
 
 .post-form button {
-  background: #000;                             /* Bouton "Publier" noir */
-  color: #ffcc00;                               /* Texte "Publier" jaune */
-  border: none;                                 /* Pas de contour moche */
-  padding: 10px 20px;                           /* Belle taille de bouton */
-  cursor: pointer;                              /* Main cliquable */
-  border-radius: 4px;                           /* Petit arrondi */
-  font-weight: bold;                            /* Texte plus épais pour marquer l'action */
+  background: #000;                             /* Bouton d'envoi noir */
+  color: #ffcc00;                               /* Texte jaune */
+  border: none;                                 /* Sans bordure */
+  padding: 10px 20px;                           /* Taille du bouton */
+  cursor: pointer;                              /* Curseur main */
+  border-radius: 4px;                           /* Arrondis */
+  font-weight: bold;                            /* Texte en gras */
 }
+.post-form button:hover { background: #333; }   /* Survol du bouton d'envoi */
 
-.post-form button:hover {
-  background: #333;                             /* Le noir devient gris foncé quand on veut cliquer */
-}
-
-/* --- LA LISTE DES ARTICLES (POSTS) --- */
-.loading {
-  font-size: 18px;                              /* Taille du texte de chargement API */
-  color: #007BFF;                               /* Bleu internet classique */
-  font-weight: bold;                            /* En gras */
-  text-align: center;                           /* Au milieu de l'écran */
-  margin: 20px 0;                               /* Dégage l'espace en haut et en bas */
-}
+/* --- LA LISTE DES ARTICLES --- */
+.loading { font-size: 18px; color: #ffcc00; text-align: center; margin: 20px 0; } /* Texte de chargement en jaune */
 
 .post-item {
-  background: white;                            /* Le post ressemble à une carte blanche */
+  background: white;                            /* Carte blanche */
   padding: 15px;                                /* Espace interne */
   border-radius: 8px;                           /* Carte arrondie */
-  margin-bottom: 15px;                          /* Sépare ce post du post suivant */
-  border-left: 5px solid #ffcc00;               /* Détail design : une barre verticale jaune épaisse sur le côté gauche */
-  text-align: left;                             /* Texte aligné classiquement à gauche */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);        /* Petite ombre portée douce */
+  margin-bottom: 15px;                          /* Espace avec le post suivant */
+  border-left: 5px solid #ffcc00;               /* Barre jaune à gauche */
+  text-align: left;                             /* Texte à gauche */
 }
 
-.post-item h4 {
-  margin: 0 0 10px 0;                           /* Gère l'espace du titre de l'article */
-  color: #333;                                  /* Titre bien lisible */
-  text-transform: capitalize;                   /* Force la première lettre de chaque mot en majuscule, très utile pour les API en anglais */
+.post-item h4 { margin: 0 0 10px 0; color: #333; text-transform: capitalize; } /* Titre du post */
+.post-item p { margin: 0; color: #666; line-height: 1.5; }                     /* Texte du post espacé */
+
+
+/* ========================================= */
+/* --- NOUVEAU : LA GALERIE D'IMAGES --- */
+/* ========================================= */
+
+/* FORMULAIRE D'AJOUT D'IMAGE */
+.add-image-form {
+  background: white;                            /* Fond blanc pour la cohérence */
+  padding: 20px;                                /* Aération interne */
+  border-radius: 8px;                           /* Coins arrondis */
+  margin-bottom: 20px;                          /* Espace sous le formulaire */
+  text-align: left;                             /* Texte à gauche */
+  max-width: 400px;                             /* Largeur limitée pour le design */
+  margin-left: auto;                            /* Centrage horizontal */
+  margin-right: auto;                           /* Centrage horizontal */
 }
 
-.post-item p {
-  margin: 0;                                    /* Supprime la marge de base */
-  color: #666;                                  /* Texte principal en gris (moins agressif que le noir pur) */
-  line-height: 1.5;                             /* Écarte les lignes de texte : technique n°1 pour améliorer la lecture */
+.add-image-form h3 {
+  margin-top: 0;                                /* Enlève la marge haute */
+  color: #333;                                  /* Texte foncé */
+}
+
+.add-image-form input[type="file"] {
+  display: block;                               /* Retour à la ligne pour l'input */
+  margin-bottom: 15px;                          /* Espace avant le bouton */
+  color: #333;                                  /* Texte du chemin de fichier foncé */
+}
+
+.add-image-form button {
+  background: #000;                             /* Bouton noir */
+  color: #ffcc00;                               /* Texte jaune */
+  border: none;                                 /* Sans bordure */
+  padding: 10px 20px;                           /* Remplissage */
+  cursor: pointer;                              /* Curseur main */
+  border-radius: 4px;                           /* Arrondis */
+  font-weight: bold;                            /* Texte en gras */
+}
+
+.add-image-form button:hover {
+  background: #333;                             /* Survol bouton */
+}
+
+/* BOUTONS DE TRI */
+.gallery-controls {
+  margin-bottom: 20px;                          /* Éloigne les boutons des images */
+  display: flex;                                /* Alignement horizontal */
+  justify-content: center;                      /* Centre les boutons */
+  gap: 10px;                                    /* Espace entre les deux boutons */
+}
+
+.gallery-controls button {
+  padding: 8px 16px;                            /* Taille des boutons de tri */
+  background-color: #333;                       /* Fond gris foncé par défaut */
+  color: white;                                 /* Texte blanc */
+  border: 2px solid transparent;                /* Bordure invisible pour garder la taille */
+  border-radius: 4px;                           /* Arrondis */
+  cursor: pointer;                              /* Curseur main */
+  transition: 0.3s;                             /* Animation fluide */
+}
+
+.gallery-controls button.active {
+  background-color: #000;                       /* Fond noir si sélectionné */
+  border-color: #ffcc00;                        /* Contour jaune vif si sélectionné */
+  color: #ffcc00;                               /* Texte jaune si sélectionné */
+}
+
+/* LE CONTENEUR DES IMAGES */
+.gallery-container {
+  width: 100%;                                  /* Prend toute la largeur de la section */
+  transition: all 0.5s ease-in-out;             /* Rend la transition de mise en page fluide */
+}
+
+/* LE MODE MOSAÏQUE (GRILLE) */
+.gallery-container.view-mosaic {
+  display: grid;                                /* Active le système de grille CSS (le plus puissant pour les galeries) */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* MAGIE : Crée des colonnes d'au moins 200px qui s'adaptent à l'écran */
+  gap: 15px;                                    /* Espace régulier entre toutes les images */
+}
+
+/* LE MODE COLONNE (FLEXBOX) */
+.gallery-container.view-column {
+  display: flex;                                /* Active Flexbox */
+  flex-direction: column;                       /* Empile les images de haut en bas */
+  align-items: center;                          /* Centre les images au milieu de la colonne */
+  gap: 20px;                                    /* Espace vertical entre les images */
+}
+
+/* LE STYLE DES IMAGES */
+.gallery-item {
+  width: 100%;                                  /* L'image prend 100% de la boîte qui la contient */
+  max-width: 600px;                             /* Empêche l'image de devenir géante en mode colonne */
+  height: 200px;                                /* Fixe une hauteur identique pour toutes les images (très important en mosaïque) */
+  object-fit: cover;                            /* MAGIE : L'image se recadre toute seule sans se déformer pour remplir sa boîte */
+  border-radius: 8px;                           /* Arrondit les coins de l'image */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);        /* Ajoute une petite ombre portée pour les faire ressortir du fond sombre */
+  transition: transform 0.3s;                   /* Prépare une animation de zoom */
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);                       /* Zoome légèrement l'image quand on passe la souris dessus (effet très apprécié) */
 }
 
 /* --- PIED DE PAGE --- */
 footer {
   background-color: #000000;                    /* Fond noir */
   color: white;                                 /* Texte en blanc */
-  text-align: center;                           /* Parfaitement centré */
-  padding: 20px 0;                              /* Épaisseur de la barre de pied de page */
+  text-align: center;                           /* Centré */
+  padding: 20px 0;                              /* Épaisseur du footer */
 }
