@@ -1,21 +1,39 @@
-// Structure du projet validée : index.html, main.js, style.css                          // Commentaire de base
+        
 
-function createAndStyleElement(tag, className, content = '') {                          // Fonction utilitaire pour créer une balise HTML
-    const element = document.createElement(tag);                                        // Création en mémoire de la balise
-    if (className) element.className = className;                                       // Application de la classe CSS
-    if (content) element.innerHTML = content;                                           // Injection du contenu
-    return element;                                                                     // Renvoi de l'élément prêt
+function createAndStyleElement(tag, className, content = '') {       // Fonction utilitaire pour créer une balise HTML cette fonction veux dire :
+//  "crée une balise HTML du type spécifié par "tag", applique-lui la classe CSS donnée par "className", insère le contenu HTML spécifié par "content"
+    
+    const element = document.createElement(tag);     // const element = document.createElement(tag) veux dire : 
+                                                    // "crée un nouvel élément HTML du type spécifié par "tag" et stocke-le dans la variable "element"
+    
+    if (className) element.className = className;   // si (classname) element.className = className veux dire :
+    // "si une classe CSS est fournie (c'est-à-dire si "className" n'est pas vide), alors assigne cette classe à l'élément créé en utilisant la propriété "className" de l'élément"
+    if (content) element.innerHTML = content;  // si (content) element.innerHTML = content veux dire :
+    // "si du contenu HTML est fourni (c'est-à-dire si "content" n'est pas vide), alors insère ce contenu à l'intérieur de l'élément créé en utilisant la propriété "innerHTML" de l'élément"
+    return element;                                                              
 }
 
-function setupCounter(element) {                                                        // Logique du compteur de clics
-    let counter = 0;                                                                    // Initialisation à zéro
-    const setCounter = (count) => {                                                     // Fonction de mise à jour
-      counter = count;                                                                  // Stockage
-      element.innerHTML = `<button>${counter}</button>`;                                // Affichage du bouton
-    };                                                                                  // Fin de fonction
-    element.addEventListener('click', () => setCounter(counter + 1));                   // Action au clic
-    setCounter(0);                                                                      // Premier affichage
+
+//compétence 1
+//compteur de clics
+function setupCounter(element) {                                                        
+    let counter = 0;              //je declare une variable modifiable "counter" pour a pour valeur initiale 0
+    
+    const setCounter = (count) => {  //je déclare une fonction "setCounter" qui au lieu de stoker un chiffre, elle stock une action qui a besoin du paramètre "count"
+     
+        counter = count;     //counter = count veux dire : l'action commence par remplacer la valeur de "counter" par celle de "count"
+     
+        element.innerHTML = `<button>${counter}</button>`; // Affichage du bouton : ça modifie le code HTML du boutton pour y mettre la valeur de "counter"
+                                                        //       à chaque fois que "setCounter" est appelée                               
+    };                                                                                  
+    element.addEventListener('click', () => setCounter(counter + 1)); // Action au clic : à chaque clic, on appelle "setCounter" en lui passant la valeur actuelle de "counter" + 1, 
+                                                                        // ce qui incrémente le compteur
+    setCounter(0);                                                                      
 }
+
+
+
+
 
 function createPostElement(title, body) {                                               // Fonction de création d'un article
     const article = createAndStyleElement('article', 'post-item');                      // Création de la boîte
