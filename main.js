@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 function createAndStyleElement(tag, className, content = '') {       // Fonction utilitaire pour créer une balise HTML cette fonction veux dire :
@@ -6,16 +7,31 @@ function createAndStyleElement(tag, className, content = '') {       // Fonction
     const element = document.createElement(tag);     // const element = document.createElement(tag) veux dire : 
     // "crée un nouvel élément HTML du type spécifié par "tag" et stocke-le dans la variable "element"
 
+=======
+        
+
+function createAndStyleElement(tag, className, content = '') {       // Fonction utilitaire pour créer une balise HTML cette fonction veux dire :
+//  "crée une balise HTML du type spécifié par "tag", applique-lui la classe CSS donnée par "className", insère le contenu HTML spécifié par "content"
+    
+    const element = document.createElement(tag);     // const element = document.createElement(tag) veux dire : 
+                                                    // "crée un nouvel élément HTML du type spécifié par "tag" et stocke-le dans la variable "element"
+    
+>>>>>>> origin/main
     if (className) element.className = className;   // si (classname) element.className = className veux dire :
     // "si une classe CSS est fournie (c'est-à-dire si "className" n'est pas vide), alors assigne cette classe à l'élément créé en utilisant la propriété "className" de l'élément"
     if (content) element.innerHTML = content;  // si (content) element.innerHTML = content veux dire :
     // "si du contenu HTML est fourni (c'est-à-dire si "content" n'est pas vide), alors insère ce contenu à l'intérieur de l'élément créé en utilisant la propriété "innerHTML" de l'élément"
+<<<<<<< HEAD
     return element;
+=======
+    return element;                                                              
+>>>>>>> origin/main
 }
 
 
 //compétence 1
 //compteur de clics
+<<<<<<< HEAD
 function setupCounter(element) {
     let counter = 0;              //je declare une variable modifiable "counter" pour a pour valeur initiale 0
 
@@ -29,6 +45,21 @@ function setupCounter(element) {
     element.addEventListener('click', () => setCounter(counter + 1)); // Action au clic : à chaque clic, on appelle "setCounter" en lui passant la valeur actuelle de "counter" + 1, 
     // ce qui incrémente le compteur
     setCounter(0);
+=======
+function setupCounter(element) {                                                        
+    let counter = 0;              //je declare une variable modifiable "counter" pour a pour valeur initiale 0
+    
+    const setCounter = (count) => {  //je déclare une fonction "setCounter" qui au lieu de stoker un chiffre, elle stock une action qui a besoin du paramètre "count"
+     
+        counter = count;     //counter = count veux dire : l'action commence par remplacer la valeur de "counter" par celle de "count"
+     
+        element.innerHTML = `<button>${counter}</button>`; // Affichage du bouton : ça modifie le code HTML du boutton pour y mettre la valeur de "counter"
+                                                        //       à chaque fois que "setCounter" est appelée                               
+    };                                                                                  
+    element.addEventListener('click', () => setCounter(counter + 1)); // Action au clic : à chaque clic, on appelle "setCounter" en lui passant la valeur actuelle de "counter" + 1, 
+                                                                        // ce qui incrémente le compteur
+    setCounter(0);                                                                      
+>>>>>>> origin/main
 }
 
 
@@ -50,7 +81,11 @@ function createPage() {                                                         
     const fetchDataButton = createAndStyleElement('a', '', 'Feed');                     // Bouton Feed
     const galleryButton = createAndStyleElement('a', '', 'Galerie');                    // Bouton pour la galerie d'images
     const networksButton = createAndStyleElement('a', 'drop-trigger', 'Réseaux ▼');     // Bouton menu déroulant
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/main
     nav.appendChild(homeButton);                                                        // Ajout à la barre
     nav.appendChild(aboutButton);                                                       // Ajout à la barre
     nav.appendChild(fetchDataButton);                                                   // Ajout à la barre
@@ -69,6 +104,7 @@ function createPage() {                                                         
       <h2>Bienvenue sur JavaScript DOM !</h2>                                           
       <div id="counter" class="counter"></div>                                          
     `);                                                                                 // Section Accueil
+<<<<<<< HEAD
     const aboutSection = createAndStyleElement('div', 'section', `
             <h2>À propos du site</h2>
             <p>
@@ -86,6 +122,11 @@ function createPage() {                                                         
         `);       // Section À propos
     const feedSection = createAndStyleElement('div', 'section feed-container', '');     // Section Feed
 
+=======
+    const aboutSection = createAndStyleElement('div', 'section', 'Créé avec JS');       // Section À propos
+    const feedSection = createAndStyleElement('div', 'section feed-container', '');     // Section Feed
+    
+>>>>>>> origin/main
     // --- SECTION : LA GALERIE ---
     const gallerySection = createAndStyleElement('div', 'section gallery-section', `    
       <h2>Galerie d'images</h2>                                                         
@@ -97,16 +138,28 @@ function createPage() {                                                         
       <input type="file" id="image-upload" accept="image/png, image/jpeg, image/webp" required> 
       <button type="submit">Ajouter à la galerie</button>                               
     `);                                                                                 // Formulaire avec champ fichier restreint aux formats d'images
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/main
     const galleryControls = createAndStyleElement('div', 'gallery-controls', `          
       <button id="btn-mosaic" class="active">Mosaïque</button>                          
       <button id="btn-column">Colonne</button>                                          
     `);                                                                                 // Création des deux boutons d'affichage
+<<<<<<< HEAD
 
     const galleryContainer = createAndStyleElement('div', 'gallery-container view-mosaic', ''); // Conteneur des images
 
     const mesImages = ['img/BLMM.webp', 'img/DOOD.webp', 'img/BPRO-Display-01-US.webp', 'img/DUAD-Display.webp', 'img/JUSH-Display.webp', 'img/display1.webp'];  // Tes images locales
 
+=======
+    
+    const galleryContainer = createAndStyleElement('div', 'gallery-container view-mosaic', ''); // Conteneur des images
+    
+    const mesImages = ['img/BLMM.webp', 'img/DOOD.webp', 'img/BPRO-Display-01-US.webp', 'img/DUAD-Display.webp', 'img/JUSH-Display.webp', 'img/display1.webp'];  // Tes images locales
+    
+>>>>>>> origin/main
     mesImages.forEach(src => {                                                          // Boucle sur chaque lien
         const img = createAndStyleElement('img', 'gallery-item');                       // Crée la balise img
         img.src = src;                                                                  // Assigne la source
@@ -149,7 +202,11 @@ function createPage() {                                                         
         if (postsList.innerHTML === '') fetchData(postsList);                                     // Charge API
         closeSubMenu();                                                                           // Ferme menu
     });
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/main
     galleryButton.addEventListener('click', () => {                                               // Clic Galerie
         showSection(gallerySection);                                                              // Affiche section galerie
         closeSubMenu();                                                                           // Ferme menu
@@ -176,7 +233,11 @@ function createPage() {                                                         
         e.preventDefault();                                                                       // Bloque rechargement page
         const fileInput = document.getElementById('image-upload');                                // Cible le champ fichier
         const file = fileInput.files[0];                                                          // Récupère le premier fichier choisi
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/main
         if (file) {                                                                               // Si fichier présent
             const imgUrl = URL.createObjectURL(file);                                             // Magie : crée l'URL locale temporaire
             const newImg = createAndStyleElement('img', 'gallery-item');                          // Crée balise img
